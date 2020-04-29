@@ -52,7 +52,7 @@ macro by!(data, keys, replace_exp)
             1:length($_groups.starts)
         )
         for $p in $pair_splitted
-            $f = eval(pair_to_function($p))
+            $f = eval(DataToolkit.pair_to_function($p))
             $valscat = DataFrames._combine(i->Base.invokelatest($f, i), $_groups)[2][:, :x1]
             $values = collect(Iterators.flatten(map(
                 i->fill($valscat[i], length($_group_indexes[i])), 

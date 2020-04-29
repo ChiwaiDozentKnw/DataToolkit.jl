@@ -1,6 +1,5 @@
 module DataToolkit
 
-import Base: parse, replace
 using Dates
 using CSV
 # using DataValues

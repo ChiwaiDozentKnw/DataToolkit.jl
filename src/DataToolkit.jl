@@ -7,7 +7,8 @@ using CSV
 using DataFrames
 using Blink, TableView
 
-export replace2, parse2, isnumber, allinteger, forceparse, forcedate, @replace!, @drop!, @by!, @filter, @filter!
+export del_special_char, readCSV, unify_city_name, isnumber, allinteger, forceparse, forcedate
+export @replace!, @drop!, @by!, @filter, @filter!
 
 # export @querying
 

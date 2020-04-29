@@ -1,0 +1,10 @@
+name = "DataToolkit"
+uuid = "860df127-8466-4eca-b42f-dc149572e4ea"
+authors = ["user "]
+version = "0.1.0"
+
+[deps]
+Blink = "ad839575-38b3-5650-b840-f874b8c74a25"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+TableView = "40c74d1a-b44c-5b06-a7c1-6cbea58ea978"

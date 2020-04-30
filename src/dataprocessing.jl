@@ -86,4 +86,11 @@ function forcedate(x)
     end
 end 
 
-
+macro get_namevalue_pairs(args...)
+    block = "Dict("
+    for i in args
+        block = block * "\"" * string(i) * "\"=>" * string(i) * ","
+    end
+    block = Meta.parse(block * ")")
+    return esc(block)
+end

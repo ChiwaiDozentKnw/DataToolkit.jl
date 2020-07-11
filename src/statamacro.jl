@@ -1,32 +1,36 @@
 #Query macro
+#
 
 macro replace!(data, replaceexp, ifexp)
     replaceexp_extended = extend_exp(:data_, replaceexp, "i")
     ifexp_extended = extend_exp(:data_, ifexp, "i")
+    datalength = gensym("datalength")
+    replacefunc = gensym("replacefunc")
     block = quote
-        datalength = size($(esc(data)), 1)
-        function replacefunc(data_, i)
+        $datalength = size($(esc(data)), 1)
+        function $replacefunc(data_, i)
             if $ifexp_extended
                 $replaceexp_extended
             end
         end
-        map(i->replacefunc($(esc(data)), i), 1:datalength)
-        $(esc(data))
+        map(i->$replacefunc($(data), i), 1:$datalength)
+        $(data)
     end
-    return block
+    return esc(block)
 end
 
 macro drop!(data, ifexp)
-    ifexp_extended = extend_exp(data, ifexp, "i")
+    # @drop! is not safe. Avoid using it.
+    ifexp_extended = extend_exp(data, ifexp, "________i")
     rows_to_delete = gensym("rows_to_delete")
     datalength = gensym("datalength")
     return esc(
         quote
             $rows_to_delete = []
             $datalength = size($data, 1)
-            for i in 1:$datalength
+            for ________i in 1:$datalength
                 if $ifexp_extended
-                    push!($rows_to_delete, i)
+                    push!($rows_to_delete, ________i)
                 end
             end
             deleterows!($data, $rows_to_delete)

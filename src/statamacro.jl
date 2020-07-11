@@ -7,7 +7,7 @@ macro replace!(data, replaceexp, ifexp)
     datalength = gensym("datalength")
     replacefunc = gensym("replacefunc")
     block = quote
-        $datalength = size($(esc(data)), 1)
+        $datalength = size($(data), 1)
         function $replacefunc(data_, i)
             if $ifexp_extended
                 $replaceexp_extended
